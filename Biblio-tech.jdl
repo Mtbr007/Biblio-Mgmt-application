@@ -1,0 +1,79 @@
+
+application {
+  config {
+    baseName Bibliotheque
+    applicationType monolith
+    authenticationType	jwt
+    clientFramework react
+    serverPort 9999
+    dtoSuffix DTO
+  }
+  entities *
+  dto * with mapstruct
+}
+entity  Livre{
+	Id Integer,
+    Titre String,
+    Auteur String,
+    Editeurs String,
+    Categorie String,
+    Resume String,
+    ISBN String,
+    Langue String
+    
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity Livre {
+	Titre String,
+    Auteur String,
+    Categorie String,
+    MotCle String
+    
+}
+
+entity Emprunt{
+	ID Integer
+	DateReservation LocalDate,
+    EtatEmprunt String
+}
+
+/**
+ * The Employee entity.
+ */
+entity Utilisateur {
+	Id Integer,
+	Nom String,
+	Postnom String,
+	Email String,
+	NumeroTel String,
+	Mdp String,
+	DateIns LocalDate,
+}
+
+entity Statistique {
+	NombreLivre Integer,
+    NbUtilisateur Integer,
+    
+}
+
+entity RetourLivre{
+	DateEnvoie LocalDate,
+    Livre String
+
+}
+
+
+relationship OneToMany {
+	Emprunt{Livre} to Livre
+    Rservation {Livre} to Emprunt
+  	Statistique {Utilisateur} to Emprunt
+    Utilisateur  {Livre} to Emprunt
+    Emprunt {notification} to Notification
+}
+ relationship OneToOne {
+ 	RetourLivre {Emprunt} to Emprunt
+ }
+
+
