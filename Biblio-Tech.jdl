@@ -23,15 +23,6 @@ entity  Livre{
     
 }
 
-// an ignored comment
-/** not an ignored comment */
-entity Livre {
-	Titre String,
-    Auteur String,
-    Categorie String,
-    MotCle String
-    
-}
 
 entity Emprunt{
 	ID Integer
@@ -67,7 +58,6 @@ entity RetourLivre{
 
 relationship OneToMany {
 	Emprunt{Livre} to Livre
-    Rservation {Livre} to Emprunt
   	Statistique {Utilisateur} to Emprunt
     Utilisateur  {Livre} to Emprunt
     Emprunt {notification} to Notification
